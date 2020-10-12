@@ -10,7 +10,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         /// CustomSurfaceViewのインスタンスを生成しonTouchリスナーをセット
-        val customSurfaceView_hoge = CustomSurfaceView(this, surfaceView)
-
+        val customSurfaceView = paint(surfaceView)
+        surfaceView.setOnTouchListener { v, event ->
+            customSurfaceView.onTouch(event)
+        }
     }
 }
