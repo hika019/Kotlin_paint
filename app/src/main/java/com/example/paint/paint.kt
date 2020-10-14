@@ -87,6 +87,15 @@ class paint (CustomSurfaceView: SurfaceView){
 //    }
 
     private fun hoge(x: Float, y:Float){
+        canvas = Canvas()
+        canvas = surfaceHolder?.lockCanvas()
+        //// キャンバスのクリア
+        val backgraund = Color.argb(0,0,0,0)
+
+        canvas?.drawColor(backgraund, PorterDuff.Mode.CLEAR) //ぬるぽ原因（多分背景）
+
+
+
         var paint = Paint()
         val lineStrokeWidth = 20F
 
