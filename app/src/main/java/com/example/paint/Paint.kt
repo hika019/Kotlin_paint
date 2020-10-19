@@ -8,6 +8,7 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 
+
 class PaintView @JvmOverloads constructor(context: Context?, attrs: AttributeSet? = null) :
     View(context, attrs) {
     private val paint: Paint
@@ -51,11 +52,3 @@ class PaintView @JvmOverloads constructor(context: Context?, attrs: AttributeSet
     }
 
 }
-
-
-
-//// pathクラスの情報とそのpathの色情報を保存する
-data class pathInfo(
-    var path: Path,
-    var color: Int
-)
