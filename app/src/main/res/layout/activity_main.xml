@@ -47,15 +47,14 @@
 
     </LinearLayout>
 
-    <SurfaceView
-        android:id="@+id/surfaceView"
+    <com.example.paint.PaintView
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@android:color/holo_red_light"
         app:layout_constraintBottom_toTopOf="@+id/ink_palette"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

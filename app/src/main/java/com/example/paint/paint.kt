@@ -22,7 +22,8 @@
 //    var height: Int? = null
 //
 //
-//    constructor(context: Context, surfaceView: SurfaceView){
+//    constructor(context: Context, surfaceView: SurfaceView): this(CustomSurfaceView = surfaceView, surfaceHolder = SurfaceHolder){
+//
 //        surfaceHolder = surfaceView.holder
 //
 //        /// display の情報（高さ 横）を取得
@@ -63,7 +64,7 @@
 //        val canvas = surfaceHolder!!.lockCanvas()
 //
 //        //// キャンバスのクリア
-//        canvas!!.drawColor(0, PorterDuff.Mode.CLEAR)
+//        canvas!!.drawColor(Color.WHITE)
 //
 //        /// 前回のビットマップをキャンバスに描画
 //        canvas!!.drawBitmap(prevBitmap!!, 0F, 0F, null)
@@ -93,7 +94,6 @@
 //
 //
 //
-//    @RequiresApi(Build.VERSION_CODES.O)
 //    fun onTouch(event: MotionEvent): Boolean {
 //        if (prevBitmap == null){
 //            initializeBitmap()
@@ -101,7 +101,7 @@
 //
 //        when (event.action) {
 //            MotionEvent.ACTION_DOWN -> Log.d("paint", "down ${event.x}, ${event.y}")
-//            MotionEvent.ACTION_MOVE -> hoge(event.x, event.y)
+//            MotionEvent.ACTION_MOVE -> touchMove(event.x, event.y)
 //            MotionEvent.ACTION_UP -> Log.d("paint", "up ${event.x}, ${event.y}")
 //        }
 //
@@ -116,13 +116,13 @@
 ////    }
 ////
 ////    ///    ACTION_MOVE 時の処理
-////    private fun touchMove(x: Float, y: Float) {
-////        /// pathクラスとdrawメソッドで線を書く
-////        path!!.lineTo(x, y)
-////        draw(pathInfo(path!!, color!!))
-////        prevCanvas!!.drawPath(path!!, paint!!)
-////
-////    }
+//    private fun touchMove(x: Float, y: Float) {
+//        /// pathクラスとdrawメソッドで線を書く
+//        path!!.lineTo(x, y)
+//        draw(pathInfo(path!!, color!!))
+//        prevCanvas!!.drawPath(path!!, paint!!)
+//
+//    }
 ////
 ////    ///    ACTION_UP 時の処理
 ////    private fun touchUp(x: Float, y: Float) {
@@ -133,7 +133,6 @@
 ////        prevCanvas!!.drawPath(path!!, paint!!)
 ////    }
 //
-//    @RequiresApi(Build.VERSION_CODES.O)
 //    private fun hoge(x: Float, y:Float){
 //        var canvas = surfaceHolder?.lockCanvas()
 //        //// キャンバスのクリア
