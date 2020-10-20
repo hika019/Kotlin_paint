@@ -15,28 +15,22 @@ class MainActivity : AppCompatActivity() {
 
         val paint_class = PaintView(this)
 
+        var colorData = color_data(null)
 
-        //色を変えれるか
-        var colorData = color_data()
 
-        if (colorData.color == null){
-            colorData.color ="black"
-        }
 
 
 
         black_btn.setOnClickListener {
             Log.d("color", "onClick black_btn")
-            colorData.color ="black"
+            colorData.color = "black"
             Log.d("color", "main color_data: ${colorData.color}")
         }
         red_btn.setOnClickListener {
             Log.d("color", "onClick red_btn")
-            colorData.color ="red"
+            colorData.color = "red"
             Log.d("color", "main color_data: ${colorData.color}")
         }
     }
 
 }
-
-//class color(var color:String)

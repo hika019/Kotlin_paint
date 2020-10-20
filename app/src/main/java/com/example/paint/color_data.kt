@@ -1,8 +1,8 @@
 package com.example.paint
 
-class color_data{
-    var color:String? = this.return_color()
-    fun return_color(): String? {
-        return this.color
-    }
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+class color_data(var color:String?): Parcelable{
 }
