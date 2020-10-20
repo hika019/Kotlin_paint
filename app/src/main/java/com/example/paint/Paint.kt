@@ -9,6 +9,7 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import com.example.paint.color_data
 
 
 class PaintView @JvmOverloads constructor(context: Context?, attrs: AttributeSet? = null) :
@@ -16,10 +17,13 @@ class PaintView @JvmOverloads constructor(context: Context?, attrs: AttributeSet
     val paint: Paint
     private val path: Path
     var tmp: Int? = null
-    var color_data = color()
+    var colorData = color_data("red")//ここに色が依存する
+
+
 
 
     init {
+//        colorData.color = "black"
         path = Path()
         paint = Paint()
 //        paint.setColor(Color.BLACK)
@@ -35,12 +39,11 @@ class PaintView @JvmOverloads constructor(context: Context?, attrs: AttributeSet
 
     @Override
     override fun onDraw(canvas: Canvas) {
-        //色部分追加
-        Log.d("color", "color_data: ${color_data.color}")
-        when(color_data.color){
+        Log.d("color", "color_data: ${colorData.color}")
+        when(colorData.color){
             "black" -> paint.setColor(Color.BLACK)
             "red" -> paint.setColor(Color.RED)
-            "blue" -> tmp = Color.BLUE
+            "blue" -> paint.setColor((Color.BLUE))
         }
 
         canvas.drawPath(path, paint)
@@ -89,3 +92,5 @@ class hoge(){
 
     }
 }
+
+

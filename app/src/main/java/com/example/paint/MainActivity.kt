@@ -17,18 +17,20 @@ class MainActivity : AppCompatActivity() {
 
 
         //色を変えれるか
-        var color_data = color("black")
+        var colorData = color_data("")
+
+
 
         black_btn.setOnClickListener {
-            color_data.color ="black"
+            colorData.color ="black"
         }
         red_btn.setOnClickListener {
             Log.d("color", "onClick red_btn")
-            color_data.color ="red"
-            Log.d("color", "main color_data: ${color_data.color}")
+            colorData.color ="red"
+            Log.d("color", "main color_data: ${colorData.color}")
         }
     }
 
 }
 
-class color(var color:String)
+//class color(var color:String)
