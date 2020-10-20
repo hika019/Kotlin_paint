@@ -34,19 +34,19 @@ class PaintView @JvmOverloads constructor(context: Context?, attrs: AttributeSet
         Log.d("color", "init:${paint.color}")
     }
 
-    var color = color_data("red")//ここなんだよなぁ
+    val color = color_data::color
 
 
 
     @Override
     override fun onDraw(canvas: Canvas) {
-        when(color.color){
+        when(color.toString()){
             "black" -> paint.setColor(Color.BLACK)
             "red" -> paint.setColor(Color.RED)
             "blue" -> paint.setColor((Color.BLUE))
         }
         canvas.drawPath(path, paint)
-        Log.d("color", "color_data_class: ${color.color}")
+        Log.d("color", "color_data_class: ${color}")
         Log.d("color", "paint color: ${paint.color}")
     }
 
