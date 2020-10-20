@@ -16,8 +16,8 @@ class PaintView @JvmOverloads constructor(context: Context?, attrs: AttributeSet
     View(context, attrs) {
     val paint: Paint
     private val path: Path
-    var tmp: Int? = null
-    var colorData = color_data("red")//ここに色が依存する
+    var tmp: String? = null
+    val colorData = color_data()//ここに色が依存する
 
 
 
@@ -40,14 +40,14 @@ class PaintView @JvmOverloads constructor(context: Context?, attrs: AttributeSet
     @Override
     override fun onDraw(canvas: Canvas) {
         Log.d("color", "color_data: ${colorData.color}")
-        when(colorData.color){
+        tmp = colorData.return_color()
+        when(tmp){
             "black" -> paint.setColor(Color.BLACK)
             "red" -> paint.setColor(Color.RED)
             "blue" -> paint.setColor((Color.BLUE))
         }
-
         canvas.drawPath(path, paint)
-        Log.d("color", "drow")
+        Log.d("color", "${-x.toInt()}")
     }
 
     @Override
