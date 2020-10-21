@@ -36,14 +36,19 @@ class PaintView @JvmOverloads constructor(context: Context?, attrs: AttributeSet
 
     @Override
     override fun onDraw(canvas: Canvas) {
+        //色のデータを渡す
+//        paint.setColor(pathColorData.color)
         canvas.drawPath(path, paint)
 
-        Log.d("color", "color_data_class: ")
-        Log.d("color", "paint color: ${paint.color}")
+//        Log.d("color", "color_data_class: ")
+//        Log.d("color", "paint color: ${paint.color}")
     }
 
     @Override
-    override fun onTouchEvent(event: MotionEvent): Boolean {
+    override fun onTouchEvent(event: MotionEvent, pathColorData: path_color_data): Boolean {
+
+        //引数path_color_dataを消せばエラーは消える
+
         val x = event.x
         val y = event.y
         when (event.action) {
@@ -58,6 +63,7 @@ class PaintView @JvmOverloads constructor(context: Context?, attrs: AttributeSet
     //touch関数
     fun touchDown(x:Float, y:Float){
         path.moveTo(x, y)
+        path_color_data(path!!, paint.color!!)
         invalidate()
     }
     fun touchMove(x:Float, y:Float){
@@ -79,9 +85,8 @@ class PaintView @JvmOverloads constructor(context: Context?, attrs: AttributeSet
 
 }
 
-
-
-data class path_data(
+//// pathクラスの情報とそのpathの色情報を保存する
+data class path_color_data(
     var path: Path,
     var color: Int
 )

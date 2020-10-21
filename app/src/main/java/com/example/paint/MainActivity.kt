@@ -15,18 +15,31 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val paint_class = PaintView(this)
-
-
+//        val colorData = color_data()
+//
+//        black_btn.setOnClickListener {
+//            change_color("black")
+//        }
+//        red_btn.setOnClickListener {
+//            change_color("red")
+//            Log.d("color", "Click red_btn :${colorData.color}")
+//        }
+//        black_btn.setOnClickListener {
+//            change_color("blue")
+//        }
 
     }
 
-    fun change_color(color_str:String, pathData: path_data){
-        var color:Int = Color.BLACK
-        when(color_str){
-            "black" -> color = Color.BLACK
-            "red" -> color = Color.RED
-            "blue" -> color = Color.BLUE
-        }
-        pathData.color = color
-    }
+
+//    fun change_color(color_str:String){
+//        val colorData = color_data()
+//
+//        var color = Color.BLACK
+//        when(color_str){
+//            "black" -> color = Color.BLACK
+//            "red" -> color = Color.RED
+//            "blue" -> color = Color.BLUE
+//        }
+//        colorData.color = color
+//    }
 }
