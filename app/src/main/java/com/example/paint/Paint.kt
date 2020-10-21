@@ -45,7 +45,7 @@ class PaintView @JvmOverloads constructor(context: Context?, attrs: AttributeSet
     }
 
     @Override
-    override fun onTouchEvent(event: MotionEvent, pathColorData: path_color_data): Boolean {
+    override fun onTouchEvent(event: MotionEvent): Boolean {
 
         //引数path_color_dataを消せばエラーは消える
 

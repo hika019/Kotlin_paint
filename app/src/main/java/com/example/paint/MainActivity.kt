@@ -6,6 +6,7 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -28,6 +29,11 @@ class MainActivity : AppCompatActivity() {
 //            change_color("blue")
 //        }
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.option_menu, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 
 
