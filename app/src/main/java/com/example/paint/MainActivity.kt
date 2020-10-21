@@ -2,6 +2,7 @@ package com.example.paint
 
 //https://qiita.com/InoueDaiki/items/3b51aaabdaad1c2227a3
 import android.content.Context
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -15,22 +16,17 @@ class MainActivity : AppCompatActivity() {
 
         val paint_class = PaintView(this)
 
-        var colorData = color_data(null)
 
 
-
-
-
-        black_btn.setOnClickListener {
-            Log.d("color", "onClick black_btn")
-            colorData.color = "black"
-            Log.d("color", "main color_data: ${colorData.color}")
-        }
-        red_btn.setOnClickListener {
-            Log.d("color", "onClick red_btn")
-            colorData.color = "red"
-            Log.d("color", "main color_data: ${colorData.color}")
-        }
     }
 
+    fun change_color(color_str:String, pathData: path_data){
+        var color:Int = Color.BLACK
+        when(color_str){
+            "black" -> color = Color.BLACK
+            "red" -> color = Color.RED
+            "blue" -> color = Color.BLUE
+        }
+        pathData.color = color
+    }
 }

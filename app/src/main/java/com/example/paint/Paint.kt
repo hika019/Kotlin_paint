@@ -1,15 +1,12 @@
 package com.example.paint
 
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.Path
+import android.graphics.*
 import android.util.AttributeSet
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
-import com.example.paint.color_data
+import com.example.paint.*
 
 
 class PaintView @JvmOverloads constructor(context: Context?, attrs: AttributeSet? = null) :
@@ -34,19 +31,14 @@ class PaintView @JvmOverloads constructor(context: Context?, attrs: AttributeSet
         Log.d("color", "init:${paint.color}")
     }
 
-    val color = color_data::color
 
 
 
     @Override
     override fun onDraw(canvas: Canvas) {
-        when(color.toString()){
-            "black" -> paint.setColor(Color.BLACK)
-            "red" -> paint.setColor(Color.RED)
-            "blue" -> paint.setColor((Color.BLUE))
-        }
         canvas.drawPath(path, paint)
-        Log.d("color", "color_data_class: ${color}")
+
+        Log.d("color", "color_data_class: ")
         Log.d("color", "paint color: ${paint.color}")
     }
 
@@ -55,21 +47,30 @@ class PaintView @JvmOverloads constructor(context: Context?, attrs: AttributeSet
         val x = event.x
         val y = event.y
         when (event.action) {
-            MotionEvent.ACTION_DOWN -> {
-                path.moveTo(x, y)
-                invalidate()
-            }
-            MotionEvent.ACTION_MOVE -> {
-                path.lineTo(x, y)
-                invalidate()
-            }
-            MotionEvent.ACTION_UP -> {
-                path.lineTo(x, y)
-                invalidate()
-            }
+            MotionEvent.ACTION_DOWN -> touchDown(event.x, event.y)
+            MotionEvent.ACTION_MOVE -> touchMove(event.x, event.y)
+            MotionEvent.ACTION_UP -> touchUp(event.x, event.y)
         }
         return true
     }
+
+
+    //touch関数
+    fun touchDown(x:Float, y:Float){
+        path.moveTo(x, y)
+        invalidate()
+    }
+    fun touchMove(x:Float, y:Float){
+        path.lineTo(x, y)
+        invalidate()
+    }
+    fun touchUp(x: Float, y: Float){
+        path.lineTo(x, y)
+        invalidate()
+    }
+
+
+
 
     fun clear() {
         path.reset()
@@ -78,19 +79,9 @@ class PaintView @JvmOverloads constructor(context: Context?, attrs: AttributeSet
 
 }
 
-class hoge(){
-    var paint: Paint? = null
-    var tmp:Int? = null
-    fun change_color(color: String){
-        when (color){
-            "black" -> tmp = Color.BLACK
-            "red" -> tmp = Color.RED
-            "blue" -> tmp = Color.BLUE
-        }
-        Log.d("color", "${tmp}")
-        paint?.color = tmp as Int
-
-    }
-}
 
 
+data class path_data(
+    var path: Path,
+    var color: Int
+)
