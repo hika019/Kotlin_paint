@@ -1,12 +1,14 @@
 package com.example.paint
 
 import android.content.Context
-import android.graphics.*
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.Path
 import android.util.AttributeSet
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
-import com.example.paint.*
 
 
 class PaintView @JvmOverloads constructor(context: Context?, attrs: AttributeSet? = null) :
@@ -37,7 +39,12 @@ class PaintView @JvmOverloads constructor(context: Context?, attrs: AttributeSet
     @Override
     override fun onDraw(canvas: Canvas) {
         //色のデータを渡す
-//        paint.setColor(pathColorData.color)
+//        var color_data = path_color_data(path, paint.color).color
+//
+//
+//        if (color_data != null) {
+//            paint.setColor(color_data)
+//        }
         canvas.drawPath(path, paint)
 
 //        Log.d("color", "color_data_class: ")
@@ -61,12 +68,13 @@ class PaintView @JvmOverloads constructor(context: Context?, attrs: AttributeSet
 
 
     //touch関数
-    fun touchDown(x:Float, y:Float){
+    fun touchDown(x: Float, y: Float){
         path.moveTo(x, y)
         path_color_data(path!!, paint.color!!)
+        Log.d("color", "touchdoun color: ${paint.color}")
         invalidate()
     }
-    fun touchMove(x:Float, y:Float){
+    fun touchMove(x: Float, y: Float){
         path.lineTo(x, y)
         invalidate()
     }
@@ -75,18 +83,27 @@ class PaintView @JvmOverloads constructor(context: Context?, attrs: AttributeSet
         invalidate()
     }
 
+    fun red(){
+        paint.setColor(Color.RED)
+        Log.d("color", "in red function: ${paint.color}")
+    }
+
+
 
 
 
     fun clear() {
-        path.reset()
+        val canvas = Canvas()
+        canvas.drawColor(Color.WHITE)
         invalidate()
+        Log.d("color", "in clear function")
     }
 
 }
 
+
 //// pathクラスの情報とそのpathの色情報を保存する
 data class path_color_data(
-    var path: Path,
-    var color: Int
+    var path: Path?,
+    var color: Int?
 )
