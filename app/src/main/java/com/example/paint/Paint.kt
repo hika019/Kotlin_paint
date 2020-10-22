@@ -94,7 +94,7 @@ class PaintView @JvmOverloads constructor(context: Context?, attrs: AttributeSet
 
     fun clear() {
         val canvas = Canvas()
-        canvas.drawColor(Color.WHITE)
+        canvas.drawColor(Color.RED)//こいつ画面全体をredで塗るはずがなんか動かん
         invalidate()
         Log.d("color", "in clear function")
     }
