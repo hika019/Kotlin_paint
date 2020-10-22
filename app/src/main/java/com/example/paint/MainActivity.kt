@@ -1,11 +1,11 @@
 package com.example.paint
 
 //https://qiita.com/InoueDaiki/items/3b51aaabdaad1c2227a3
-import android.graphics.Color
+
+
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
-import android.view.View
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.example.paint_surfaceview.CustomSurfaceView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -37,9 +37,7 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-//        reset_btn.setOnClickListener {
-//            customSurfaceView.reset()
-//        }
+
 
 
     }
@@ -48,4 +46,18 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.option_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId){
+            R.id.save_btn -> {
+                return true
+            }
+            R.id.reset_btn -> {
+                val customSurfaceView = CustomSurfaceView(this, surfaceView)
+                customSurfaceView.reset()
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
 }

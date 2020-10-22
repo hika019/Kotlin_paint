@@ -4,5 +4,7 @@
 
     <item android:title="保存"
         android:id="@+id/save_btn"
-        app:showAsAction="ifRoom"/>
+        />
+    <item android:title="新しいキャンバス"
+        android:id="@+id/reset_btn"/>
 </menu>
