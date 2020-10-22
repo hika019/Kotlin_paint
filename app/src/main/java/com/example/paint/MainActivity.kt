@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.example.paint_surfaceview.CustomSurfaceView
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -15,26 +16,30 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val paint_class = PaintView(this)
+        /// CustomSurfaceViewのインスタンスを生成しonTouchリスナーをセット
+        val customSurfaceView = CustomSurfaceView(this,surfaceView)
+        surfaceView.setOnTouchListener { v, event ->
+            customSurfaceView.onTouch(event)
+        }
 
         black_btn.setOnClickListener {
-            change_color("black")
+            customSurfaceView.changeColor("black")
         }
         red_btn.setOnClickListener {
-            change_color("red")
-            val tmp= PaintView(this, null)
-            tmp.red()
-//            Log.d("color", "Click red_btn :${}")
+            customSurfaceView.changeColor("red")
         }
         blue_btn.setOnClickListener {
-            change_color("blue")
+            customSurfaceView.changeColor("blue")
         }
-        eraser.setOnClickListener {
-            Log.d("color", "eraser on Click")
-            val tmp= PaintView(this, null)
-            tmp.clear()
 
+        eraser_btn.setOnClickListener {
+            customSurfaceView.changeColor("white")
         }
+
+
+//        reset_btn.setOnClickListener {
+//            customSurfaceView.reset()
+//        }
 
 
     }
@@ -42,20 +47,5 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.option_menu, menu)
         return super.onCreateOptionsMenu(menu)
-    }
-
-
-    fun change_color(color_str: String):String{
-        val colorData = path_color_data(null, null)
-
-        var color = Color.BLACK
-        when(color_str){
-            "black" -> color = Color.BLACK
-            "red" -> color = Color.RED
-            "blue" -> color = Color.BLUE
-        }
-        colorData.color = color
-        Log.d("color_main", "${colorData.color}")
-        return color_str
     }
 }
