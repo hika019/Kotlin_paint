@@ -2,6 +2,7 @@ package com.example.paint_surfaceview
 
 import android.content.Context
 import android.graphics.*
+import android.graphics.Bitmap.CompressFormat
 import android.os.Environment
 import android.util.Log
 import android.view.MotionEvent
@@ -11,6 +12,9 @@ import android.view.WindowManager
 import android.widget.Toast
 import java.io.File
 import java.io.FileOutputStream
+import java.io.IOException
+import java.io.OutputStreamWriter
+import java.lang.Exception
 
 
 class CustomSurfaceView: SurfaceView, SurfaceHolder.Callback{
@@ -56,7 +60,7 @@ class CustomSurfaceView: SurfaceView, SurfaceHolder.Callback{
         paint!!.style = Paint.Style.STROKE
         paint!!.strokeCap = Paint.Cap.ROUND
         paint!!.isAntiAlias = true
-        paint!!.strokeWidth = 15F
+        paint!!.strokeWidth = 15F //太さ
     }
 
 
@@ -88,7 +92,6 @@ class CustomSurfaceView: SurfaceView, SurfaceHolder.Callback{
 
     private fun draw(pathInfo: pathInfo) {
         canvas = Canvas()
-
         /// ロックしてキャンバスを取得
         canvas = surfaceHolder!!.lockCanvas()
         if (paint!!.color == Color.WHITE){
@@ -113,7 +116,7 @@ class CustomSurfaceView: SurfaceView, SurfaceHolder.Callback{
         surfaceHolder!!.unlockCanvasAndPost(canvas)
     }
 
-    /// 画面をタッチしたときにアクションごとに関数を呼び出す
+    /// 画面をタッチしたとき
     fun onTouch(event: MotionEvent) : Boolean{
         when (event.action) {
             MotionEvent.ACTION_DOWN -> touchDown(event.x, event.y)
@@ -123,7 +126,8 @@ class CustomSurfaceView: SurfaceView, SurfaceHolder.Callback{
         return true
     }
 
-    ///// path クラスで描画するポイントを保持
+
+    /// touchイベント(詳細)
     ///    ACTION_DOWN 時の処理
     private fun touchDown(x: Float, y: Float) {
         path = Path()
@@ -146,7 +150,9 @@ class CustomSurfaceView: SurfaceView, SurfaceHolder.Callback{
         prevCanvas!!.drawPath(path!!, paint!!)
     }
 
-    /// resetメソッド
+
+
+    /// リセット
     fun reset() {
         ///初期化とキャンバスクリア
         initializeBitmap()
@@ -155,7 +161,7 @@ class CustomSurfaceView: SurfaceView, SurfaceHolder.Callback{
         surfaceHolder!!.unlockCanvasAndPost(canvas)
     }
 
-    /// color チェンジメソッド
+    /// 色変更
     fun changeColor(colorSelected: String) {
         when (colorSelected) {
             "black" -> color = Color.BLACK
@@ -166,44 +172,33 @@ class CustomSurfaceView: SurfaceView, SurfaceHolder.Callback{
         paint!!.color = color as Int
     }
 
+
+    //未完成
     fun save(){
+        var imgpath = Environment.getExternalStorageState()
+        val file_name = "tmp.jpg"
+        imgpath += file_name
 
-
-        //　SDカードの状態を調べる
-
-        //　SDカードの状態を調べる
-        val state = Environment.getExternalStorageState()
-        if (Environment.MEDIA_MOUNTED == state) {
+        try {
 
             //保存処理
-            val context = context?:return
-            val file = File(context.externalCacheDir, "tmp.jpeg")
-
             if (prevBitmap == null ){
                 Log.d("color", "bitmap is null")
             }else{
                 Log.d("color", "bitmap is not null")
             }
 
-
-            FileOutputStream(file).use { outputStream ->
+            FileOutputStream(imgpath).use { outputStream ->
                 prevBitmap?.compress(Bitmap.CompressFormat.JPEG, 90, outputStream)
             }
 
-
-
-            Toast.makeText(context, "SD card ok.", Toast.LENGTH_SHORT).show()
-        } else {
-            Toast.makeText(context,"SD card can not write.",Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "image saved.", Toast.LENGTH_SHORT).show()
+        } catch (e: Exception) {
+            Toast.makeText(context, "${e}", Toast.LENGTH_LONG).show()
+            Log.d("color", "${e}")
         }
+
     }
-
-
-
-
-
-
-
 
 }
 
