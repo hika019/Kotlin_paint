@@ -200,6 +200,10 @@ class CustomSurfaceView: SurfaceView, SurfaceHolder.Callback{
 
     }
 
+    fun save_tmp(){
+        Toast.makeText(context, "未完成のため実行不可", Toast.LENGTH_LONG).show()
+    }
+
 }
 
 data class pathInfo(

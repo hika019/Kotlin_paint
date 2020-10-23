@@ -1,6 +1,5 @@
 package com.example.paint
 
-//https://qiita.com/InoueDaiki/items/3b51aaabdaad1c2227a3
 
 
 import android.os.Bundle
@@ -39,7 +38,7 @@ class MainActivity : AppCompatActivity() {
             customSurfaceView.reset()
         }
         save.setOnClickListener {
-            customSurfaceView.save()
+            customSurfaceView.save_tmp()
         }
 
 
@@ -54,7 +53,7 @@ class MainActivity : AppCompatActivity() {
         when (item.itemId){
             R.id.save_btn -> {
                 val customSurfaceView = CustomSurfaceView(this, surfaceView)
-                customSurfaceView.save()
+                customSurfaceView.save_tmp()
             }
         }
         return super.onOptionsItemSelected(item)
