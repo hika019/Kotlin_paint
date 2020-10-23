@@ -2,7 +2,16 @@ package com.example.paint_surfaceview
 
 import android.content.Context
 import android.graphics.*
-import android.view.*
+import android.os.Environment
+import android.util.Log
+import android.view.MotionEvent
+import android.view.SurfaceHolder
+import android.view.SurfaceView
+import android.view.WindowManager
+import android.widget.Toast
+import java.io.File
+import java.io.FileOutputStream
+
 
 class CustomSurfaceView: SurfaceView, SurfaceHolder.Callback{
 
@@ -82,6 +91,13 @@ class CustomSurfaceView: SurfaceView, SurfaceHolder.Callback{
 
         /// ロックしてキャンバスを取得
         canvas = surfaceHolder!!.lockCanvas()
+        if (paint!!.color == Color.WHITE){
+            paint!!.strokeWidth = 45F
+        }
+        else{
+            paint!!.strokeWidth = 15F
+        }
+
 
         //// キャンバスのクリア
         canvas!!.drawColor(0, PorterDuff.Mode.CLEAR)
@@ -90,8 +106,8 @@ class CustomSurfaceView: SurfaceView, SurfaceHolder.Callback{
         canvas!!.drawBitmap(prevBitmap!!, 0F, 0F, null)
 
         //// pathを描画
-        paint!!.color = pathInfo.color
-        canvas!!.drawPath(pathInfo.path, paint!!)
+        paint!!.color = pathInfo.color!!
+        canvas!!.drawPath(pathInfo.path!!, paint!!)
 
         /// ロックを解除
         surfaceHolder!!.unlockCanvasAndPost(canvas)
@@ -150,12 +166,48 @@ class CustomSurfaceView: SurfaceView, SurfaceHolder.Callback{
         paint!!.color = color as Int
     }
 
+    fun save(){
+
+
+        //　SDカードの状態を調べる
+
+        //　SDカードの状態を調べる
+        val state = Environment.getExternalStorageState()
+        if (Environment.MEDIA_MOUNTED == state) {
+
+            //保存処理
+            val context = context?:return
+            val file = File(context.externalCacheDir, "tmp.jpeg")
+
+            if (prevBitmap == null ){
+                Log.d("color", "bitmap is null")
+            }else{
+                Log.d("color", "bitmap is not null")
+            }
+
+
+            FileOutputStream(file).use { outputStream ->
+                prevBitmap?.compress(Bitmap.CompressFormat.JPEG, 90, outputStream)
+            }
+
+
+
+            Toast.makeText(context, "SD card ok.", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(context,"SD card can not write.",Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
+
+
+
 
 
 
 }
 
 data class pathInfo(
-    var path: Path,
-    var color: Int
+    var path: Path?,
+    var color: Int?
 )

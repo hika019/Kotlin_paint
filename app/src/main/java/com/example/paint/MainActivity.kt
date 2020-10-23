@@ -35,9 +35,12 @@ class MainActivity : AppCompatActivity() {
         eraser_btn.setOnClickListener {
             customSurfaceView.changeColor("white")
         }
-
-
-
+        clear_btn.setOnClickListener {
+            customSurfaceView.reset()
+        }
+        save.setOnClickListener {
+            customSurfaceView.save()
+        }
 
 
     }
@@ -50,11 +53,8 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId){
             R.id.save_btn -> {
-                return true
-            }
-            R.id.reset_btn -> {
                 val customSurfaceView = CustomSurfaceView(this, surfaceView)
-                customSurfaceView.reset()
+                customSurfaceView.save()
             }
         }
         return super.onOptionsItemSelected(item)

@@ -5,6 +5,4 @@
     <item android:title="保存"
         android:id="@+id/save_btn"
         />
-    <item android:title="新しいキャンバス"
-        android:id="@+id/reset_btn"/>
 </menu>
