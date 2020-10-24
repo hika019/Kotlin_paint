@@ -2,10 +2,12 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/back"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@android:color/white">
+    android:focusableInTouchMode="true"
+    android:background="@android:color/white"
+    tools:context=".MainActivity">
 
 
     <SurfaceView
@@ -69,13 +71,39 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/eraser_mask"
-        app:civ_border_width="2dp"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        app:civ_border_width="2dp"
         app:layout_constraintBottom_toBottomOf="@+id/eraser_btn"
         app:layout_constraintEnd_toEndOf="@+id/eraser_btn"
         app:layout_constraintStart_toStartOf="@+id/eraser_btn"
         app:layout_constraintTop_toTopOf="@+id/eraser_btn" />
+
+    <EditText
+        android:id="@+id/editTextNumber2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="線の太さ(デフォルト15)"
+        android:gravity="center"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/surfaceView"
+        app:layout_constraintEnd_toStartOf="@+id/change_thickness_btn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@+id/clear_btn"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/change_thickness_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="確定"
+        app:layout_constraintBottom_toTopOf="@+id/surfaceView"
+        app:layout_constraintEnd_toStartOf="@+id/save"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/editTextNumber2"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

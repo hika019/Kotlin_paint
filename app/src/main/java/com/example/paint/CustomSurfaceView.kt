@@ -2,7 +2,6 @@ package com.example.paint_surfaceview
 
 import android.content.Context
 import android.graphics.*
-import android.graphics.Bitmap.CompressFormat
 import android.os.Environment
 import android.util.Log
 import android.view.MotionEvent
@@ -10,6 +9,7 @@ import android.view.SurfaceHolder
 import android.view.SurfaceView
 import android.view.WindowManager
 import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_main.view.*
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -91,11 +91,10 @@ class CustomSurfaceView: SurfaceView, SurfaceHolder.Callback{
 
 
     private fun draw(pathInfo: pathInfo) {
+//        change_thickness()
         canvas = Canvas()
         /// ロックしてキャンバスを取得
         canvas = surfaceHolder!!.lockCanvas()
-
-        change_thickness()
 
         //// キャンバスのクリア
         canvas!!.drawColor(0, PorterDuff.Mode.CLEAR)
@@ -110,16 +109,6 @@ class CustomSurfaceView: SurfaceView, SurfaceHolder.Callback{
 
         /// ロックを解除
         surfaceHolder!!.unlockCanvasAndPost(canvas)
-    }
-
-    //色によって太さを変更
-    fun change_thickness(){
-        if (paint!!.color == Color.WHITE){
-            paint!!.strokeWidth = 45F
-        }
-        else{
-            paint!!.strokeWidth = 15F
-        }
     }
 
 
@@ -177,7 +166,34 @@ class CustomSurfaceView: SurfaceView, SurfaceHolder.Callback{
             "white" -> color = Color.WHITE
         }
         paint!!.color = color as Int
+
+//        if (editTextNumber2?.text.toString() != null){
+//            Log.d("color", "tmp is : ${editTextNumber2?.text.toString()}")
+//        }
+
     }
+
+
+    //色によって太さを変更
+    fun change_thickness(width: Float?){
+        if (width != null){
+            paint!!.strokeWidth = width
+            Log.d("color", "strokeWidth is not null")
+        }else{
+            Log.d("color", "strokeWidth is null")
+//            Log.d("color", "${tmp}")
+
+            if (paint!!.color == Color.WHITE){
+                paint!!.strokeWidth = 45F
+            }
+            else{
+                paint!!.strokeWidth = 15F
+            }
+        }
+
+    }
+
+
 
 
     //未完成
