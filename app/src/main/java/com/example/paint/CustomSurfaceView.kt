@@ -94,13 +94,8 @@ class CustomSurfaceView: SurfaceView, SurfaceHolder.Callback{
         canvas = Canvas()
         /// ロックしてキャンバスを取得
         canvas = surfaceHolder!!.lockCanvas()
-        if (paint!!.color == Color.WHITE){
-            paint!!.strokeWidth = 45F
-        }
-        else{
-            paint!!.strokeWidth = 15F
-        }
 
+        change_thickness()
 
         //// キャンバスのクリア
         canvas!!.drawColor(0, PorterDuff.Mode.CLEAR)
@@ -112,9 +107,21 @@ class CustomSurfaceView: SurfaceView, SurfaceHolder.Callback{
         paint!!.color = pathInfo.color!!
         canvas!!.drawPath(pathInfo.path!!, paint!!)
 
+
         /// ロックを解除
         surfaceHolder!!.unlockCanvasAndPost(canvas)
     }
+
+    //色によって太さを変更
+    fun change_thickness(){
+        if (paint!!.color == Color.WHITE){
+            paint!!.strokeWidth = 45F
+        }
+        else{
+            paint!!.strokeWidth = 15F
+        }
+    }
+
 
     /// 画面をタッチしたとき
     fun onTouch(event: MotionEvent) : Boolean{
@@ -201,7 +208,7 @@ class CustomSurfaceView: SurfaceView, SurfaceHolder.Callback{
     }
 
     fun save_tmp(){
-        Toast.makeText(context, "未完成のため実行不可", Toast.LENGTH_LONG).show()
+        Toast.makeText(context, "未完成のため実行不可", Toast.LENGTH_SHORT).show()
     }
 
 }
