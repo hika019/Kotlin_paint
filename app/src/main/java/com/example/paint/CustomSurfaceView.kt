@@ -174,14 +174,15 @@ class CustomSurfaceView: SurfaceView, SurfaceHolder.Callback{
     }
 
 
-    //色によって太さを変更
+    //太さを変更
     fun change_thickness(width: Float?){
         if (width != null){
+            //値が入った時
             paint!!.strokeWidth = width
             Log.d("color", "strokeWidth is not null")
         }else{
+            //デフォルト
             Log.d("color", "strokeWidth is null")
-//            Log.d("color", "${tmp}")
 
             if (paint!!.color == Color.WHITE){
                 paint!!.strokeWidth = 45F
