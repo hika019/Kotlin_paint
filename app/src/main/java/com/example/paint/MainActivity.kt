@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        editTextNumber2.setOnFocusChangeListener{v, hasFocus ->
+        paint_width_edittext.setOnFocusChangeListener{ v, hasFocus ->
             if (!hasFocus){
                 val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(v.windowToken, 0)
@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
 
         //確定ボタンが押される
         change_thickness_btn.setOnClickListener {
-            val width = editTextNumber2?.text
+            val width = paint_width_edittext?.text
             //空か判定
             if (width!!.isEmpty()){
                 Log.d("color", "width _str is null")

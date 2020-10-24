@@ -80,13 +80,13 @@
         app:layout_constraintTop_toTopOf="@+id/eraser_btn" />
 
     <EditText
-        android:id="@+id/editTextNumber2"
+        android:id="@+id/paint_width_edittext"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:ems="10"
         android:hint="線の太さ(デフォルト15)"
         android:gravity="center"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         app:layout_constraintBottom_toTopOf="@+id/surfaceView"
         app:layout_constraintEnd_toStartOf="@+id/change_thickness_btn"
         app:layout_constraintHorizontal_bias="0.5"
@@ -102,7 +102,7 @@
         app:layout_constraintBottom_toTopOf="@+id/surfaceView"
         app:layout_constraintEnd_toStartOf="@+id/save"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/editTextNumber2"
+        app:layout_constraintStart_toEndOf="@+id/paint_width_edittext"
         app:layout_constraintTop_toTopOf="parent" />
 
 
