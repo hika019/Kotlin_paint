@@ -26,12 +26,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        paint_width_edittext.setOnFocusChangeListener{ v, hasFocus ->
-            if (!hasFocus){
-                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                imm.hideSoftInputFromWindow(v.windowToken, 0)
-            }
-        }
+//        paint_width_edittext.setOnFocusChangeListener{ v, hasFocus ->
+//            if (!hasFocus){
+//                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+//                imm.hideSoftInputFromWindow(v.windowToken, 0)
+//            }
+//        }
 
         /// CustomSurfaceViewのインスタンスを生成しonTouchリスナーをセット
         val customSurfaceView = CustomSurfaceView(this,surfaceView)
@@ -56,25 +56,38 @@ class MainActivity : AppCompatActivity() {
         clear_btn.setOnClickListener {
             customSurfaceView.reset()
         }
-        save.setOnClickListener {
-            customSurfaceView.save_tmp()
+//        save.setOnClickListener {
+//            customSurfaceView.save_tmp()
+//        }
+
+
+        width_min.setOnClickListener {
+            customSurfaceView.change_paint_width("min")
+        }
+        width_normal.setOnClickListener {
+            customSurfaceView.change_paint_width("normal")
+        }
+        width_big.setOnClickListener {
+            customSurfaceView.change_paint_width("big")
         }
 
-        //確定ボタンが押される
-        change_thickness_btn.setOnClickListener {
-            val width = paint_width_edittext?.text
-            //空か判定
-            if (width!!.isEmpty()){
-                Log.d("color", "width _str is null")
-                customSurfaceView.change_thickness(null)
-                Toast.makeText(applicationContext, "デフォルト値が設定されました", Toast.LENGTH_SHORT).show()
-            }else{
-                Log.d("color", "width _str is not null")
-                customSurfaceView.change_thickness(width!!.toString()!!.toFloat())
-                Toast.makeText(applicationContext, "太さ${width!!.toString().toFloat()}が設定されました", Toast.LENGTH_SHORT).show()
 
-            }
-        }
+
+//        //確定ボタンが押される
+//        change_thickness_btn.setOnClickListener {
+//            val width = paint_width_edittext?.text
+//            //空か判定
+//            if (width!!.isEmpty()){
+//                Log.d("color", "width _str is null")
+//                customSurfaceView.change_thickness(null)
+//                Toast.makeText(applicationContext, "デフォルト値が設定されました", Toast.LENGTH_SHORT).show()
+//            }else{
+//                Log.d("color", "width _str is not null")
+//                customSurfaceView.change_thickness(width!!.toString()!!.toFloat())
+//                Toast.makeText(applicationContext, "太さ${width!!.toString().toFloat()}が設定されました", Toast.LENGTH_SHORT).show()
+//
+//            }
+//        }
 
 
     }

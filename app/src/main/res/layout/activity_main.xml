@@ -17,7 +17,7 @@
         app:layout_constraintBottom_toTopOf="@+id/black_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/save" />
+        app:layout_constraintTop_toBottomOf="@+id/clear_btn" />
 
     <Button
         android:id="@+id/blue_btn"
@@ -53,13 +53,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_delete" />
 
-    <ImageView
-        android:id="@+id/save"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_save" />
+<!--    <ImageView-->
+<!--        android:id="@+id/save"-->
+<!--        android:layout_width="50dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:srcCompat="@android:drawable/ic_menu_save" />-->
 
     <ImageView
         android:id="@+id/eraser_btn"
@@ -79,30 +79,56 @@
         app:layout_constraintStart_toStartOf="@+id/eraser_btn"
         app:layout_constraintTop_toTopOf="@+id/eraser_btn" />
 
-    <EditText
-        android:id="@+id/paint_width_edittext"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:ems="10"
-        android:hint="線の太さ(デフォルト15)"
-        android:gravity="center"
-        android:inputType="numberDecimal"
-        app:layout_constraintBottom_toTopOf="@+id/surfaceView"
-        app:layout_constraintEnd_toStartOf="@+id/change_thickness_btn"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toEndOf="@+id/clear_btn"
-        app:layout_constraintTop_toTopOf="parent" />
+
+
+<!--    <EditText-->
+<!--        android:id="@+id/paint_width_edittext"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:ems="10"-->
+<!--        android:gravity="center"-->
+<!--        android:hint="線の太さ(デフォルト15)"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/change_thickness_btn"-->
+<!--        app:layout_constraintHorizontal_chainStyle="packed"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/change_thickness_btn"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="確定"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
 
     <Button
-        android:id="@+id/change_thickness_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="確定"
+        android:id="@+id/width_min"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/btn_black"
+        app:layout_constraintBottom_toBottomOf="@+id/width_normal"
+        app:layout_constraintEnd_toStartOf="@+id/width_normal"
+        app:layout_constraintTop_toTopOf="@+id/width_normal" />
+
+    <Button
+        android:id="@+id/width_normal"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/btn_black"
+        app:layout_constraintBottom_toBottomOf="@+id/width_big"
+        app:layout_constraintEnd_toStartOf="@+id/width_big"
+        app:layout_constraintTop_toTopOf="@+id/width_big" />
+
+    <Button
+        android:id="@+id/width_big"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/btn_black"
         app:layout_constraintBottom_toTopOf="@+id/surfaceView"
-        app:layout_constraintEnd_toStartOf="@+id/save"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/paint_width_edittext"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 

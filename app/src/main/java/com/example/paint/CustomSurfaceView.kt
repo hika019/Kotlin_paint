@@ -179,10 +179,10 @@ class CustomSurfaceView: SurfaceView, SurfaceHolder.Callback{
         if (width != null){
             //値が入った時
             paint!!.strokeWidth = width
-            Log.d("color", "strokeWidth is not null")
+            Log.d("color", "strokeWidth is set by float")
         }else{
             //デフォルト
-            Log.d("color", "strokeWidth is null")
+            Log.d("color", "strokeWidth is default")
 
             if (paint!!.color == Color.WHITE){
                 paint!!.strokeWidth = 45F
@@ -191,7 +191,14 @@ class CustomSurfaceView: SurfaceView, SurfaceHolder.Callback{
                 paint!!.strokeWidth = 15F
             }
         }
+    }
 
+    fun change_paint_width(size:String){
+        when(size){
+            "min" -> paint!!.strokeWidth = 15F
+            "normal" -> paint!!.strokeWidth = 30F
+            "big" -> paint!!.strokeWidth = 45F
+        }
     }
 
 
